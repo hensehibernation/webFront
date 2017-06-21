@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+		<script src="jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="bootstrap-3.3.5-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.content {
+				width: 500px;
+				height: 500px;
+				margin: 50px auto;
+				overflow: hidden;
+			}
+			
+			.bottom {
+				width: 500px;
+				height: auto;
+				margin: 0 auto;
+			}
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			table {
+				width: 500px;
+				font-size: 18px;
+			}
+			
+			tr,
+			th {
+				text-align: center;
+			}
+			
+			li {
+				margin-right: 10px;
+				float: left;
+			}
+			
+			.hide {
+				display: none;
+			}
+			.pageTo{
+				width: 80px;
+				outline: none;
+				padding-left: 20px;
+				font-size: 10px;
+			}
+			.pageTo:focus{
+				border: 1px solid #fb2e2e;
+			}
+		</style>
+		<script type="text/javascript">
+			$(function() {
+				var curpage=1;
+				var pageRow =8;
+				for(var i = 1; i < 101; i++) {
+					$("tbody").append("<tr><td>Tom</td><td>" + i + "</td></tr>");
+				}
+				var trsum = $("tbody").children("tr");
+				var totalpage = Math.ceil($(trsum).length / pageRow);
+				var theight=$(".content").height();
+				//alert(theight);
+				$("tr").css("height",theight/(pageRow+1)-1);
+				//alert(totalpage);
+				$(trsum).addClass("hide");
+				for(var j = 0; j < pageRow; j++) {
+					$(trsum[j]).removeClass("hide");
+				}
+				$(".total").text(totalpage);
+				
+				$(".beginpage").click(function() {
+					$(trsum).addClass("hide");
+					curpage = 1;
+					$(".curpage").text(curpage);
+					for(var j = 0; j < pageRow * curpage; j++) {
+						$(trsum[j]).removeClass("hide");
+					}
+				})
+				$(".endpage").click(function() {
+					$(trsum).addClass("hide");
+					curpage = totalpage;
+					$(".curpage").text(curpage);
+					for(var j = pageRow * (curpage - 1); j < pageRow * curpage; j++) {
+						$(trsum[j]).removeClass("hide");
+					}
+				})
+				$(".prepage").click(function() {
+					$(trsum).addClass("hide");
+					curpage--;
+					if(curpage < 1) {
+						curpage=1;
+						alert("已经是首页了！");
+						for(var j = 0; j < pageRow * curpage; j++) {
+						$(trsum[j]).removeClass("hide");
+					}
+					} else {
+						$(".curpage").text(curpage);
+						for(var j = pageRow * (curpage - 1); j < pageRow * curpage; j++) {
+							$(trsum[j]).removeClass("hide");
+						}
+					}
+
+				})
+				$(".nextpage").click(function() {
+					$(trsum).addClass("hide");
+					 curpage++;
+					if(curpage >totalpage) {
+						curpage=totalpage;
+						alert("已经是末页了！");
+						for(var j = pageRow * (curpage - 1); j < pageRow * curpage; j++) {
+						$(trsum[j]).removeClass("hide");
+					}
+					} else {
+						$(".curpage").text(curpage);
+						for(var j = pageRow * (curpage - 1); j < pageRow * curpage; j++) {
+							$(trsum[j]).removeClass("hide");
+						}
+					}
+
+				})
+				$(".curpage").text(curpage);
+				$(".pageTo").blur(function(){
+					the=$(this);
+					if(/^[0-9]*[1-9][0-9]*$/.test(the.val())){
+						//alert("~");
+						if(the.val()<1){
+							alert("输入页码需大于1！");
+							the.val("");
+						}else if(the.val()>totalpage){
+							alert("输入页码需小于总页码数！");
+							the.val("");
+						}else{
+							$(trsum).addClass("hide");
+							curpage=parseInt(the.val());
+							$(".curpage").text(curpage);
+						for(var j = pageRow * (curpage-1); j < pageRow * curpage; j++) {
+							$(trsum[j]).removeClass("hide");
+						}
+						the.val("");
+						}	
+					}
+					else{
+						alert("输入不正确");
+						the.val("");
+					}
+				})
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="content">
+			<table class="table-bordered table-condensed table-hover table-striped">
+				<thead>
+					<th>Header</th>
+					<td>Data</td>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+
+		</div>
+		<div class="bottom">
+			<ul>
+				<li>当前页是 &nbsp; &nbsp;<span class="curpage"></span>&nbsp; &nbsp;页</li>
+				<li>共<span class="total"></span>页</li>
+				<li>
+					<a href="#" class="beginpage">首页</a>
+				</li>
+				<li>
+					<a href="#" class="prepage">上一页</a>
+				</li>
+				<li>
+					<a href="#" class="nextpage">下一页</a>
+				</li>
+				<li>
+					<a href="#" class="endpage">末页</a>
+				</li>
+				<li>转到 &nbsp;<input class="pageTo" type="text" /></li>
+			</ul>
+			<div class="clearfix">
+
+			</div>
+		</div>
+	</body>
+
+</html>

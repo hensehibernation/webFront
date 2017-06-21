@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.img-container {}
+			
+			.img-src {
+				width: 400px;
+				height: 400px;
+				position: relative;
+				border: 1px solid #F0F0F0;
+				overflow: hidden;
+				float: left;
+			}
+			
+			.img-src img {
+				width: 400px;
+				height: 400px;
+			}
+			
+			.img-magnifier {
+				width: 400px;
+				height: 400px;
+				display: none;
+				position: relative;
+				left: 10px;
+				float: left;
+				border: 1px solid #F0F0F0;
+				overflow: hidden;
+				box-shadow: 0 0 8px #000000;
+			}
+			
+			.selector-pointer {
+				width: 200px;
+				height: 200px;
+				display: none;
+				position: absolute;
+				background-color: lightslategray;
+				opacity: 0.7;
+				cursor: crosshair;
+			}
+			
+			.img-magnifier-src {
+				position: absolute;
+			}
+			
+			.clearfix {
+				clear: both;
+			}
+			
+			.img-selector {
+				width: 440px;
+				height: 120px;
+				position: relative;
+				padding: 5px;
+				border: 1px solid #FB2E2E;
+				overflow:hidden ;
+			}
+			
+			.img-selector ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.img-selector ul{
+				width: 1100px;
+				height: 100px;
+				position: absolute;
+			}
+			.img-selector ul li {
+				float: left;
+				position: relative;
+			}
+			.img-selector ul li img{
+				width: 100px;
+				height: 100px;
+				margin: 5px;
+				}
+			
+		</style>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				
+				var imgresources = $(".imgresources").children("li").children("img");
+				//console.log(imgresources.length);
+				//设置默认显示第一张图片
+				$(".resource").attr("src", $(imgresources[0])[0].src);
+					var imgSource = $(".resource")[0].src;
+					$(".img-magnifier-src").attr("src", imgSource);
+					//设置点击后显示的图片
+				$(imgresources).click(function() {
+					//设置放大区域图片源
+					$(".resource").attr("src", $(this)[0].src);
+					var imgSource = $(".resource")[0].src;
+					$(".img-magnifier-src").attr("src", imgSource);
+				})
+
+				var scale = 2; //以放大比例为1:2放大图片；
+				var imgwidth = $(".resource").width() * scale;
+				var imgheight = $(".resource").height() * scale;
+				$(".img-magnifier-src").css("width", imgwidth);
+				$(".img-magnifier-src").css("height", imgheight);
+				$(".img-src").mousemove(function(e) {
+					$(".img-magnifier").show();
+					$(".selector-pointer").show();
+					//控制放大区域移动范围
+					var selectorWidth = $(".selector-pointer").outerWidth();
+					var selectorHeight = $(".selector-pointer").outerHeight();
+					var minx = selectorWidth / 2;
+					var miny = selectorHeight / 2;
+					var pageX = e.pageX - $(".img-src")[0].offsetLeft - minx;
+					var pageY = e.pageY - $(".img-src")[0].offsetTop - miny;
+					var xborder = $(".img-src").width() - selectorWidth;
+					var yborder = $(".img-src").height() - selectorHeight;
+					var selectorx, selectory;
+					//					console.log(xborder+"--"+yborder);
+					//					console.log(pageX+"---"+pageY);
+					pageX < 0 ? pageX = 0 : pageX;
+					pageX > xborder ? pageX = xborder : pageX;
+					pageY < 0 ? pageY = 0 : pageY;
+					pageY > yborder ? pageY = yborder : pageY;
+					//					console.log(pageX+"---"+pageY);
+					$(".selector-pointer").css("left", pageX);
+					$(".selector-pointer").css("top", pageY);
+					//放大区域图片
+					var imgmagnifierx = pageX * scale;
+					var imgmagnifiery = pageY * scale;
+					$(".img-magnifier-src").css("left", -imgmagnifierx);
+					$(".img-magnifier-src").css("top", -imgmagnifiery);
+
+				})
+				$(".img-src").mouseleave(function() {
+					$(".img-magnifier").hide();
+					$(".selector-pointer").hide();
+				})
+				
+			})
+		</script>
+	</head>
+
+	<body>
+		<div class="img-container">
+			<div class="img-src">
+				<div class="selector-pointer"></div>
+				<img class="resource" src="" />
+			</div>
+			<div class="img-magnifier">
+				<img class="img-magnifier-src" />
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="img-selector">
+			
+			<ul class="imgresources">
+				<li><img src="img/duorou1.jpg" /></li>
+				<li><img src="img/duorou2.jpg" /></li>
+				<li><img src="img/fengjing3.jpg" /></li>
+				<li><img src="img/fengjing4.jpg" /></li>
+			</ul>
+		</div>
+	</body>
+
+</html>

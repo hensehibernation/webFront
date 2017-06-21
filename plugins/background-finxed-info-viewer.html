@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.top,
+			.frame02 {
+				box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+				-webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+			}
+			.top {
+				/*display: block;*/
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				height: 150px;
+				background-color: rgba(0, 0, 0, 0.8);
+			}
+			
+			h1 {
+				padding: 0;
+				margin: 0;
+				text-align: center;
+				color: white;
+				font-size: 50px;
+				font-family: arial;
+				line-height: 150px;
+			}
+			
+			 .frame01 {
+				position: relative;
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				height: 768px;
+				background-attachment: fixed;
+				background-position: center center;
+				background-image: url(img/background1.jpg);
+				z-index: 1;
+			}
+			
+			.frame02 {
+				/*position: relative;*/
+				width: 100%;
+				height: 768px;
+				background-color: rgba(61, 53, 54, 0.9);
+				color: rgb(166, 152, 154);
+				z-index: 2;
+			}
+			
+			 .frame03 {
+				position: relative;
+				padding: 0;
+				margin: 0;
+				width: 100%;
+				height: 768px;
+				background-size: cover;
+				background-attachment: fixed;	
+				background-position: center center;
+				background-image: url(img/background3.jpg);
+				z-index: 1;
+			}
+			.frame02 p {
+				padding: 0;
+				margin: 0;
+				padding: 100px;
+				line-height: 40px;
+				font-size: 30px;
+				font-family: arial;
+				color: white;
+			}
+			
+			h2 {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				bottom: auto;
+				right: auto;
+				transform: translateX(-50%) translateY(-50%);
+				width: 90%;
+				max-width: 1170px;
+				text-align: center;
+				color: white;
+				font-size: 50px;
+				font-family: arial;
+			}
+			.clearfix{
+				clear: both;
+			}
+		</style>
+		<script src="jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+					document.execCommand("BackgroundImageCahe",false,true);
+				
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="top">
+			<h1>This is the demo</h1>
+		</div>
+		<div class="frame01">
+			<h2>On the Senior Empty Nests</h2>
+		</div>
+		<div class="frame02">
+			<p>On the Senior Empty Nests For most senior students in universities, the last academic year has nothing to do with academics. To the frustration of professors, few courses are attended by students. And dorms are almost vacant with few lodgers. This
+				kind of phenomenon, which has been called “Senior Empty Nests”, is common among universities of China. Where have those absent senior students gone? Some lucky dogs have gone to their new jobs while the majority are still striving to get a job or
+				engaging in their internship outside of the campus. The severe employment pressure has pushed senior students into employment market earlier. The anxiety of getting a job before graduation disturbs the restless mind of every student, which leads to
+				skipping school of most students. In my view, with senior students leaving campus earlier, their time of education has been reduced, which puts them in a disadvantaged position in the employment market. Students should start job hunting after finishing
+				the courses of the last academic year. At the same time, the universities should provide career education for senior students.
+			</p>
+		</div>
+		<div class="clearfix">
+			
+		</div>
+		<div class="frame03">
+			<h2>Starting Career in a Big City or Small Town</h2>
+		</div>
+		<div class="frame02">
+			<p>
+
+				Want to be a small fish in a big pond or the other way round? Every graduate faces this question when he starts his career. Some prefer to stay in the big cities after graduation. To them, big cities mean more experiences, more opportunities to see the
+				big world and more space for career development. At the same time, higher salary is another temptation. But some other graduates want to start in small towns. Even though there may not be many big companies, they can have a quieter and less competitive
+				life. Another reason is they can be a big fish in a small pond. They can easily get the management’s attention and may win promotion earlier. As far as I am concerned, I prefer to start in a big city like Shanghai. A good begin is half the battle,
+				and in Shanghai I can find a job in a big company where I can meet people from different places and cultures. I will learn from them what I can not get from textbooks.
+
+			</p>
+		</div>
+	</body>
+
+</html>
