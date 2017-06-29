@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html5 xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<style type="text/css">
+	
+	.container{
+		position: relative;
+		width:500px;
+		height: 350px;
+		margin-left: auto; 
+		margin-right: auto;
+		margin-top: 350px;
+	}
+	.md,.bd{
+		position: absolute;
+
+		width: 50px;
+		height:50px;
+		border-radius: 50%;
+		/*border: 1px solid #333;*/
+		/*animation: scale-box 2s linear infinite;*/
+	}
+	.active{
+		animation: scale-box 2s linear infinite;
+	}
+	.bd{
+		left: 0;
+		
+	}
+	.md{
+		right:0;
+		
+	}
+	.bd div{
+		position: absolute;
+		border-radius: 50%;
+		border: 1px solid #333;
+		animation: scale-box 5s linear infinite;
+	}
+	.md div{
+		position: absolute;
+		border-radius: 50%;
+		border: 1px solid #333;
+		animation: scale-box 5s linear infinite;
+	}
+	.ed-1{
+		position: absolute;
+		bottom: 25%;
+		left:40%;
+		/*width: 50px;
+		height: 50px;*/
+		border: 2px solid #fb2e2e;
+		border-color: #fb2e2e #fff; 
+		border-width:0 50px  50px 50px;
+		background-color: #fb2e2e;
+	}
+	.ed-2{
+		position: absolute;
+		bottom: 0;
+		left:25%;
+		width: 250px;
+		height: 50px;
+		border: 1px solid orange;
+		background-color: orange;
+		animation: smile 2s linear infinite;
+	}
+	@keyframes scale-box{
+		0%{transform: :scale(1)}
+		50%{transform:scale(5)}
+		100%{transform: :scale(0)}
+	}
+	@keyframes smile{
+		from{border-bottom-right-radius: 0;border-bottom-left-radius: 0}
+		to{border-bottom-right-radius: 50%;border-bottom-left-radius: 50%}
+		/*100%{border-bottom-right-radius: 0%;border-bottom-left-radius: 0%}*/
+	}
+</style>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var boxwidthmax=50;
+		var reducenumber=4;
+		var boxname="insidebox";
+		var str="";
+		var insideboxwidth;
+		for(var i=0;i<Math.floor(boxwidthmax/reducenumber);i++){
+			insideboxwidth=(boxwidthmax-reducenumber*i);
+			str=str+"<div class='"+boxname+i+"' style='width:"+insideboxwidth+"px"+";height:"+insideboxwidth+"px"+";left:"+Math.floor(i*reducenumber/2)+"px"+";top:"+Math.floor(i*reducenumber/2)+"px"+"'></div>";  
+		}
+		console.log(str);
+		$(".bd").html(str);
+		$(".md").html(str);
+	})
+</script>
+<title>中国城市列表JSON数组</title>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="bd"></div>
+		<div class="md"></div>
+		<div class="ed-1"></div>
+		<div class="ed-2"></div>
+	</div>
+</body>
+</html5>
